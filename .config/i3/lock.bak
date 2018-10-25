@@ -1,0 +1,55 @@
+#!/bin/bash
+# requires imagemagick, xrandr and i3lock-color
+
+#nice colors 
+#COLOR="#51AFEF"
+#COLOR="#56B6C2"
+COLOR="#C678DD"
+
+
+LOCK="$HOME/.config/i3/lock.png"
+ICON="$HOME/.config/i3/icon.png"
+BACK="$HOME/.config/i3/color.png"
+
+#create solid color image
+convert -size 2500x2500 xc:$COLOR $BACK
+
+#fill white of lock with color and size it
+convert $LOCK -fuzz 50% -fill $COLOR -opaque white $ICON
+convert $ICON -resize 256x256 $ICON
+
+# Add lock image on image (one per screen)
+REG_DIMS="([[:digit:]]+)/[[:digit:]]+x([[:digit:]]+)/[[:digit:]]+"
+REG_OFFS="([\+\-][[:digit:]]+)([\+\-][[:digit:]]+)"
+xrandr --listmonitors | \
+    while read line ; do
+        if [[ ${line} =~ ${REG_DIMS} ]] ; then
+            width=${BASH_REMATCH[1]}
+            height=${BASH_REMATCH[2]}
+            if [[ ${line} =~ ${REG_OFFS} ]] ; then
+                offsetx=${BASH_REMATCH[1]}
+                offsety=${BASH_REMATCH[2]}
+            fi
+            posx=$((${offsetx} + ${width} / 2 - 256 / 2))
+            xloc=$((${width} - 64))
+            [[ ${posx} -ge 0 ]] && posx=$(echo +${posx})
+            posy=$((${offsety} + ${height} / 2 - 256 / 2))
+            [[ ${posy} -ge 0 ]] && posy=$(echo +${posy})
+            convert $BACK $ICON -geometry ${posx}${posy} -composite -matte /tmp/back.png
+        fi
+    done
+
+# Lock the screen
+i3lock -i /tmp/back.png \
+    -k -u -e --timecolor 000000FF \
+    --datesize=32 --datestr="%A, %d %b %Y" --timepos="0:900"
+
+#clean
+rm /tmp/back.png \
+    $ICON \
+    $BACK
+
+
+
+
+

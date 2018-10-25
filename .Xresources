@@ -1,0 +1,67 @@
+*foreground_bold: #a8a19f
+*cursor: #a8a19f
+*background: #1b1918
+!! black
+*color0: #1b1918
+*color8: #766e6b
+!! red
+*color1: #f22c40
+*color9: #f22c40
+!! green
+*color2: #5ab738
+*color10: #5ab738
+!! yellow
+*color3: #d5911a
+*color11: #d5911a
+!! blue
+*color4: #407ee7
+*color12: #407ee7
+!! magenta
+*color5: #6666ea
+*color13: #6666ea
+!! cyan
+*color6: #00ad9c
+*color14: #00ad9c
+!! white
+*color7: #a8a19f
+*color15: #f1efee
+
+! urxvt settings
+!URxvt*transparent: true
+!URxvt*shading: 30
+*foreground: #00cc00
+URxvt.font: xft:Inconsolata:size=19
+URxvt.boldFont: xft:Inconsolata:bold:size=19
+URxvt.italicFont: xft:Inconsolata:italic:size=19
+URxvt.letterSpace: -1
+URxvt.scrollBar: false
+URxvt.colorUL:  #4682B4
+URxvt.cursorColor:  magenta
+
+URxvt*perl-ext-common: default,clipboard,url-select,matcher,resize-font,keyboard-select
+!! urxvt url-select mode
+URxvt.keysym.C-u:               perl:url-select:select_next
+URxvt.url-select.underline:     true
+URxvt.url-select.launcher:      /usr/bin/qutebrowser
+!! urxvt clickable urls
+URxvt.matcher.button:           1
+URxvt.url-launcher:             /usr/bin/qutebrowser
+!! Change keybinding for copy/paste
+URxvt*iso14755:                 false
+URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
+URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
+!! resize font
+URxvt.resize-font.smaller:  C-j
+URxvt.resize-font.bigger:   C-k
+!! keyboard-select mode 
+URxvt.keysym.C-Escape:      perl:keyboard-select:activate
+!! scroll position
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+URxvt.keysym.C-l:      clear\n
+
+
+
+
+

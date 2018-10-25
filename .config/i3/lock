@@ -1,0 +1,24 @@
+#!/bin/bash
+# requires imagemagick, xdpyinfo and i3lock-color
+
+DIR="/home/jg/.config/i3/"
+
+#Generate a perfectly sized lock image with an icon
+#(this needs to run only once)
+
+#ICON="$DIR/icon.png"
+#SIZE=$(xdpyinfo | grep dimensions | awk '{print $2}')
+#magick -size $SIZE plasma:grey75-grey75 -swirl 100 -paint 10 $ICON -gravity center -composite $DIR/lock.png
+
+
+# Lock the screen
+#i3lock -i $DIR/lock.png \
+#  -k -u -e \
+#  --timesize 64 --timecolor 000000FF --timefont inconsolata --timestr="%H:%M:%S" --timepos="20:h-175" \
+#  --datesize 42 --datecolor 000000FF --datefont inconsolata --datestr="%A %d %b %Y"
+
+i3lock -i $DIR/lock.png \
+  -k -u -e \
+  --timesize 64 --timecolor 000000FF --timestr="%H:%M:%S" --timepos="225:h-55" \
+  --datesize 42 --datecolor 000000FF --datestr="%A %d %b %Y"
+

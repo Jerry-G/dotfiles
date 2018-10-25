@@ -1,0 +1,54 @@
+set number relativenumber
+syntax on
+colorscheme PaperColor
+""auto switch numbers
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+"search for files recursively
+set path+=**
+"display matching files when tab complete
+set wildmenu
+
+"make tab 2 spaces 
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+"set tabstop=2 shiftwidth=2 softtabstop=2
+
+"make j & k work for graphical lines too
+nnoremap j gj
+nnoremap k gk
+
+"status bar
+set laststatus=2
+set ic
+
+"easy escape
+inoremap jw <Esc>
+inoremap wj <Esc>
+
+
+
+set nocompatible
+filetype plugin indent on
+
+""Makefile
+autocmd FileType make setlocal noexpandtab
+
+""JAVA 
+setlocal smartindent
+autocmd FileType java nnoremap ; A;<Esc>
+
+""PYTHON
+setlocal smartindent
+
+""C++
+setlocal smartindent
+
+""markdown
+autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+
+
+
